@@ -1,4 +1,4 @@
-name: CI-CD-Kubernetes
+name: CD-Kubernetes
 
 on:
   push:
@@ -41,4 +41,11 @@ jobs:
         kubectl apply -f k8s/service.yaml
 
     - name: Verify Deployment
-      run: kubectl get pods -o wide 
+      run: |
+        kubectl wait --for=condition=available deployment/demo-app --timeout=180s || true
+        kubectl get pods -o wide
+        kubectl describe pod -l app=demo-app
+
+    - name: Service Info
+      run: kubectl get svc demo-service
+
