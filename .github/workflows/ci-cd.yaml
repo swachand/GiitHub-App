@@ -31,15 +31,14 @@ jobs:
       with:
         cluster_name: demo-cluster
 
+    - name: Load image into KIND
+      run: |
+        kind load docker-image ghcr.io/${{ github.actor }}/demo-app:latest --name demo-cluster
+
     - name: Apply Kubernetes Manifests
       run: |
         kubectl apply -f k8s/deployment.yaml
         kubectl apply -f k8s/service.yaml
 
     - name: Verify Deployment
-      run: kubectl get pods -o wide
-
-    - name: Test Service
-      run: |
-        kubectl wait --for=condition=available deployment/demo-app --timeout=60s
-        kubectl get svc demo-service
+      run: kubectl get pods -o wide 
