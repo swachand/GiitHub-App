@@ -1,4 +1,4 @@
-name: CI-CD-Kubernetes
+name: CI-Kubernetes
 
 on:
   push:
