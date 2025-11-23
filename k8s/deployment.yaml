@@ -13,8 +13,8 @@ spec:
         app: demo-app
     spec:
       containers:
-      - name: demo
-        image: ghcr.io/USERNAME/demo-app:latest
-        ports:
-        - containerPort: 3000
-
+        - name: demo-app
+          image: ghcr.io/swachand/demo-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
