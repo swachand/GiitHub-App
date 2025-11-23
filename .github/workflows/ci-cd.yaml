@@ -25,3 +25,8 @@ jobs:
         echo "Building $IMAGE"
         docker build -t $IMAGE .
         docker push $IMAGE
+
+    - name: Create Kubernetes Cluster (Kind)
+      uses: helm/kind-action@v1.5.0
+      with:
+        cluster_name: demo-cluster
